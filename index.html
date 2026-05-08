@@ -1,1 +1,198 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Message of Grace | Akorede</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1b4332; /* Deep Garden Green */
+      --accent: #2d6a4f;  
+      --gold: #b7950b;
+      --text-dark: #2c3e50;
+      --glass: rgba(255, 255, 255, 0.85);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; background: #f0f7f4; overflow: hidden; color: var(--text-dark); }
+
+    /* Unlock Screen */
+    #unlock-screen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--gold));
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      z-index: 1000; color: white; text-align: center; padding: 20px;
+    }
+
+    .unlock-box { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+    input { padding: 12px; border-radius: 25px; border: none; margin: 15px 0; width: 260px; text-align: center; font-size: 1rem; outline: none; }
+    .unlock-btn { padding: 12px 35px; background: #fff; color: var(--primary); border: none; border-radius: 25px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+    
+    /* Slider Logic */
+    .slider-container {
+      display: none; 
+      width: 100vw; height: 100vh;
+      scroll-snap-type: x mandatory; overflow-x: scroll; overflow-y: hidden;
+      display: flex; scroll-behavior: smooth;
+    }
+
+    .card {
+      min-width: 100vw; height: 100vh;
+      scroll-snap-align: start;
+      display: flex; justify-content: center; align-items: center;
+      position: relative; padding: 20px;
+    }
+
+    .page-1-content {
+      display: flex; flex-direction: column; 
+      width: 95%; max-width: 900px; height: 85vh;
+      background: var(--glass); border-radius: 25px; overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1); z-index: 5;
+    }
+
+    @media (min-width: 768px) { .page-1-content { flex-direction: row; } }
+
+    .hero-photo { flex: 1; background: url('hero.png') center/cover no-repeat; min-height: 40vh; }
+    .intro-text { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+
+    .faded-bg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: url('hero.png') center/cover no-repeat;
+      opacity: 0.08; filter: grayscale(100%);
+    }
+
+    .content-overlay {
+      position: relative; z-index: 5;
+      width: 90%; max-width: 600px;
+      background: rgba(255,255,255,0.9);
+      padding: 40px; border-radius: 20px; text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .download-btn {
+      display: inline-block; margin-top: 20px; padding: 12px 25px;
+      background: var(--primary); color: white; text-decoration: none;
+      border-radius: 25px; font-weight: 600; transition: 0.3s;
+    }
+
+    h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; color: var(--primary); }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+    
+    /* ANIMATED BUBBLES - FLOWING THROUGHOUT */
+    .bubble { 
+      position: fixed; bottom: -50px;
+      color: var(--accent); opacity: 0.4; 
+      animation: floatUp linear forwards; 
+      pointer-events: none; z-index: 999;
+    }
+
+    @keyframes floatUp { 
+      to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } 
+    }
+
+    .page-num { position: absolute; bottom: 30px; font-weight: 600; color: var(--primary); opacity: 0.5; }
+  </style>
+</head>
+<body>
+
+  <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
+
+  <div id="unlock-screen">
+    <div class="unlock-box">
+      <h1 style="color:white; margin-bottom:5px;">A Message for Akorede</h1>
+      <p style="font-size: 0.9rem; opacity: 0.9; color:white;">Enter your name to begin</p>
+      <input type="text" id="nameInput" placeholder="First Name or Full Name">
+      <br>
+      <button class="unlock-btn" onclick="unlock()">Unlock the Grace</button>
+    </div>
+  </div>
+
+  <div class="slider-container" id="slider">
+
+    <section class="card">
+      <div class="page-1-content">
+        <div class="hero-photo"></div>
+        <div class="intro-text">
+          <h2>Happy Valentine’s Day</h2>
+          <h1>To a Woman of Grace</h1>
+          <p><strong>Olanrewaju Akorede</strong></p>
+          <p>A little note of appreciation and warmth to a truly exceptional lady.</p>
+          <p style="font-size: 0.8rem; color: var(--gold); margin-top:10px;">Swipe left →</p>
+        </div>
+      </div>
+      <div class="page-num">1 / 7</div>
+    </section>
+
+    <section class="card">
+      <div class="faded-bg"></div>
+      <div class="content-overlay">
+        <h2>A Gentle Note</h2>
+        <p>Valentine’s Day is often about grand gestures, but sometimes it’s simply about appreciating the good people around us.</p>
+        <p>Today, I just want to take a moment to appreciate you.</p>
+      </div>
+      <div class="page-num">2 / 7</div>
+    </section>
+
+    <section class="card">
+      <div class="faded-bg"></div>
+      <div class="content-overlay">
+        <h2>Sincere Prayers</h2>
+        <p>May God continue to strengthen you, increase you in wisdom, and reward your faithfulness. May His love surround you, guide you, and refresh you in every season.</p>
+        <p>Keep shining, it truly makes a difference.</p>
+        <p style="margin-top:20px; font-weight:700; color:var(--primary)">— Oladunjoye Caleb</p>
+      </div>
+      <div class="page-num">6 / 7</div>
+    </section>
+
+    <section class="card">
+      <div class="faded-bg"></div>
+      <div class="content-overlay">
+        <h2>Happy Birthday in Advance!</h2>
+        <p>Because one celebration isn't enough for someone like you, I've prepared a little something extra.</p>
+        <div style="margin: 20px 0; border: 1px dashed var(--gold); padding: 15px; border-radius: 10px;">
+            <p style="font-size: 0.9rem;">Your Custom Birthday Graphic is Ready</p>
+            <a href="birthday-graphic.png" download="Happy_Birthday_Akorede" class="download-btn">Download Graphic 📥</a>
+        </div>
+        <p style="font-size: 0.9rem; font-style: italic;">"May your year be as vibrant as a garden in bloom."</p>
+      </div>
+      <div class="page-num">7 / 7</div>
+    </section>
+
+  </div>
+
+  <script>
+    function unlock() {
+      const nameInput = document.getElementById('nameInput').value.toLowerCase().trim();
+      const audio = document.getElementById('bgMusic');
+      const validNames = ["akorede", "olanrewaju", "olanrewaju akorede", "akorede olanrewaju"];
+
+      if(validNames.some(n => nameInput.includes(n))) {
+        document.getElementById('unlock-screen').style.display = 'none';
+        document.getElementById('slider').style.display = 'flex';
+        audio.play().catch(e => console.log("Audio waiting for interaction"));
+        startBubbles();
+      } else {
+        alert("Please enter the correct name to unlock!");
+      }
+    }
+
+    function startBubbles() {
+      setInterval(() => {
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        const icons = ["🌿", "🌸", "✨", "❤️"];
+        bubble.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        bubble.style.left = Math.random() * 100 + "vw";
+        bubble.style.fontSize = (Math.random() * 15 + 15) + "px";
+        bubble.style.animationDuration = (Math.random() * 3 + 5) + "s";
+        document.body.appendChild(bubble);
+        setTimeout(() => bubble.remove(), 7000);
+      }, 400);
+    }
+  </script>
+</body>
+ </html>
  
