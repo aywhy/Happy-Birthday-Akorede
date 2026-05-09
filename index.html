@@ -208,14 +208,13 @@
       const validNames = ["akorede", "olanrewaju", "adesewa"];
 
       if(validNames.some(n => nameInput.includes(n))) {
+        document.getElementById('unlock-screen').style.display = 'none';
+        document.getElementById('slider').style.display = 'flex';
+        
         // AUDIO FIX: Force play on user interaction
         audio.play().catch(error => {
           console.log("Audio play failed, likely browser restriction", error);
         });
-
-        document.getElementById('unlock-screen').style.display = 'none';
-        document.getElementById('slider').style.display = 'flex';
-        startBubbles();
       } else {
         alert("Please enter your name correctly to unlock!");
       }
