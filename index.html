@@ -221,10 +221,6 @@
     }
 
     function startBubbles() {
-      if(validNames.some(n => nameInput.includes(n))) {
-        document.getElementById('unlock-screen').style.display = 'none';
-        document.getElementById('slider').style.display = 'flex';
-        startBubbles();
       setInterval(() => {
         const bubble = document.createElement("div");
         bubble.className = "bubble";
