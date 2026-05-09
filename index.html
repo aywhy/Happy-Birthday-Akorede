@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1b4332; /* Deep Forest Green */
-      --accent: #2d6a4f;  /* Leaf Green */
+      --primary: #1b4332;
+      --accent: #2d6a4f;
       --gold: #b7950b;
       --text-dark: #2c3e50;
       --glass: rgba(255, 255, 255, 0.85);
@@ -17,7 +17,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Montserrat', sans-serif; background: #f0f7f4; overflow: hidden; color: var(--text-dark); }
 
-    /* Unlock Screen */
     #unlock-screen {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -31,7 +30,6 @@
     .unlock-btn { padding: 12px 35px; background: #fff; color: var(--primary); border: none; border-radius: 25px; font-weight: 700; cursor: pointer; transition: 0.3s; }
     .unlock-btn:hover { transform: scale(1.05); background: var(--gold); color: white; }
 
-    /* Main Slider */
     .slider-container {
       display: none; 
       width: 100vw; height: 100vh;
@@ -46,7 +44,6 @@
       position: relative; padding: 20px;
     }
 
-    /* UNIQUE BACKGROUNDS PER PAGE */
     .card-bg {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background-size: cover; background-position: center;
@@ -109,11 +106,11 @@
 </head>
 <body>
 
-  <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
+  <audio id="bgMusic" loop preload="auto"><source src="./music.mp3" type="audio/mpeg"></audio>
 
   <div id="unlock-screen">
     <div class="unlock-box">
-      <h1 style="color:white; margin-bottom:5px;">A Birthday Surprise</h1>
+      <h1 style="color:white; margin-bottom:5px;">A Birthday Message</h1>
       <p style="font-size: 0.9rem; opacity: 0.9; color:white;">Enter your name to begin</p>
       <input type="text" id="nameInput" placeholder="First Name or Full Name">
       <br>
@@ -123,7 +120,6 @@
 
   <div class="slider-container" id="slider">
 
-    <!-- PAGE 1 -->
     <section class="card">
       <div id="bg-1" class="card-bg"></div>
       <div class="page-1-content">
@@ -138,7 +134,6 @@
       <div class="page-num">1 / 7</div>
     </section>
 
-    <!-- PAGE 2 -->
     <section class="card">
       <div id="bg-2" class="card-bg"></div>
       <div class="content-overlay">
@@ -149,18 +144,16 @@
       <div class="page-num">2 / 7</div>
     </section>
 
-    <!-- PAGE 3 -->
     <section class="card">
       <div id="bg-3" class="card-bg"></div>
       <div class="content-overlay">
         <h2>Leadership & Excellence</h2>
         <p>Watching you lead Platoon Six has honestly been admirable.</p>
-        <p>From showing up, to handling responsibilities, to somehow leading a team that brought home three first-position wins in a row. That kind of consistency says a lot about you; not just as a leader, but as a person.</p>
+        <p>From showing up, to handling responsibilities, to somehow leading a team that brought home four first-position wins in a row. That kind of consistency says a lot about you; not just as a leader, but as a person.</p>
       </div>
       <div class="page-num">3 / 7</div>
     </section>
 
-    <!-- PAGE 4 -->
     <section class="card">
       <div id="bg-4" class="card-bg"></div>
       <div class="content-overlay">
@@ -171,7 +164,6 @@
       <div class="page-num">4 / 7</div>
     </section>
 
-    <!-- PAGE 5 -->
     <section class="card">
       <div id="bg-5" class="card-bg"></div>
       <div class="content-overlay">
@@ -182,7 +174,6 @@
       <div class="page-num">5 / 7</div>
     </section>
 
-    <!-- PAGE 6 -->
     <section class="card">
       <div id="bg-6" class="card-bg"></div>
       <div class="content-overlay">
@@ -194,7 +185,6 @@
       <div class="page-num">6 / 7</div>
     </section>
 
-    <!-- PAGE 7 -->
     <section class="card">
       <div id="bg-7" class="card-bg"></div>
       <div class="content-overlay">
@@ -202,7 +192,7 @@
         <p>To celebrate the heart behind all you do, here is a little something to keep the memory of this day alive.</p>
         <div style="margin: 20px 0; border: 1px dashed var(--gold); padding: 20px; border-radius: 15px; background: rgba(255,255,255,0.5);">
             <p style="font-size: 0.9rem; margin-bottom: 10px;">Your Custom Birthday Graphic is Ready</p>
-            <a href="birthday-graphic.png" download="Happy_Birthday_Olanrewaju_Adesewa" class="download-btn">Download Gift 📥</a>
+            <a href="./birthday-graphic.png" download="Birthday_Olanrewaju_Adesewa.png" class="download-btn">Download Gift 📥</a>
         </div>
         <p style="font-size: 0.9rem; font-style: italic;">"May your year be as vibrant as a garden in bloom."</p>
       </div>
@@ -218,9 +208,15 @@
       const validNames = ["akorede", "olanrewaju", "adesewa"];
 
       if(validNames.some(n => nameInput.includes(n))) {
+        // AUDIO FIX: Force play on user interaction
+        audio.play().then(() => {
+          console.log("Audio started");
+        }).catch(e => {
+          console.warn("Audio failed", e);
+        });
+
         document.getElementById('unlock-screen').style.display = 'none';
         document.getElementById('slider').style.display = 'flex';
-        audio.play().catch(e => console.log("Audio waiting for interaction"));
         startBubbles();
       } else {
         alert("Please enter your name correctly to unlock!");
@@ -242,4 +238,5 @@
     }
   </script>
 </body>
-       </html>
+</html>
+
