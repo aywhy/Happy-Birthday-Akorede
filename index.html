@@ -209,10 +209,8 @@
 
       if(validNames.some(n => nameInput.includes(n))) {
         // AUDIO FIX: Force play on user interaction
-        audio.play().then(() => {
-          console.log("Audio started");
-        }).catch(e => {
-          console.warn("Audio failed", e);
+        audio.play().catch(error => {
+          console.log("Audio play failed, likely browser restriction", error);
         });
 
         document.getElementById('unlock-screen').style.display = 'none';
